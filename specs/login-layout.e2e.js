@@ -5,6 +5,7 @@ describe('homework test 1', function() {
         await $('#password').setValue('password');
         await $('button').click();
         await $('#spinner').waitForDisplayed({ reverse: false, timeout: 5000 });
+        await $('#spinner').waitForDisplayed({ reverse: true });
         await $('#user-label').waitForDisplayed({ timeout: 15000 });
         const menu = await $$('#first-nav-block li');
         for (const item of menu) {
