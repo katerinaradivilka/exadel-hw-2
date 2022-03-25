@@ -1,5 +1,5 @@
-describe("test for loop", function () {
-    it('log for', async function () {
+describe("test for loop", function() {
+    it('log for', async function() {
         await browser.url('https://viktor-silakov.github.io/course-sut');
         await $('#login').setValue('walker@jw.com');
         await $('#password').setValue('password');
