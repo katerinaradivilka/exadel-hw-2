@@ -1,20 +1,23 @@
 describe('Check app', function() {
+    const email = 'walker@jw.com';
+    const password = 'password';
+    const url = 'https://viktor-silakov.github.io/course-sut';
+
     it('click on hide button', async function() {
-        await browser.url('https://viktor-silakov.github.io/course-sut');
-        await $('#login').setValue('walker@jw.com');
-        await $('#password').setValue('password');
+        await browser.url(url);
+        await $('#login').setValue(email);
+        await $('#password').setValue(password);
         await $('button').click();
+        await $('#user-label').waitForDisplayed({ timeout: 15000 });
         await browser.execute(() => {
-            const elementToRemove = document.querySelector('.navbar-brand');;
+            const elementToRemove = document.querySelector('header.navbar');;
             elementToRemove.remove();
         });
-        // element is not interactable and not visible on page
-        // await $('.navbar-toggler').click();
-
-        await browser.execute(() => {
-            alert("Hello world");
-        });
+        const alertBtnLocator = 'button.btn';
+        await $(alertBtnLocator).waitForDisplayed();
+        await $(alertBtnLocator).click();
         await browser.acceptAlert();
-        await browser.pause(3000);
     });
+
+
 });

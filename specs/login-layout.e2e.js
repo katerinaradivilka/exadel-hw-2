@@ -1,12 +1,16 @@
 describe('homework test 1', function() {
-    it('should login', async function() {
-        await browser.url('https://viktor-silakov.github.io/course-sut');
-        await $('#login').setValue('walker@jw.com');
-        await $('#password').setValue('password');
+    const url = 'https://viktor-silakov.github.io/course-sut';
+    it('should login and find red background-color', async function() {
+        const email = 'walker@jw.com';
+        const password = 'password';
+        await browser.url(url);
+        await $('#login').setValue(email);
+        await $('#password').setValue(password);
         await $('button').click();
-        await $('#spinner').waitForDisplayed({ reverse: false, timeout: 5000 });
+        await $('#spinner').waitForDisplayed({ timeout: 5000 });
         await $('#spinner').waitForDisplayed({ reverse: true });
         await $('#user-label').waitForDisplayed({ timeout: 15000 });
+        await $('//a[@title = "Log out"]').waitForDisplayed({ timeout: 15000 });
         const menu = await $$('#first-nav-block li');
         for (const item of menu) {
             await item.moveTo();
